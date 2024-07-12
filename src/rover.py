@@ -7,6 +7,7 @@ class Rover:
         self.y = y
         self.heading = heading
         self.plateau = plateau
+        self.plateau.add_rover(self.x, self.y)
 
     def execute_commands(self, commands):
         for command in commands:
@@ -28,14 +29,20 @@ class Rover:
         self.heading = directions[(directions.index(self.heading) + 1) % 4]
 
     def move(self):
-        if self.heading == 'N' and self.y < self.plateau.height:
-            self.y += 1
-        elif self.heading == 'E' and self.x < self.plateau.width:
-            self.x += 1
-        elif self.heading == 'S' and self.y > 0:
-            self.y -= 1
-        elif self.heading == 'W' and self.x > 0:
-            self.x -= 1
+        new_x, new_y = self.x, self.y
+        if self.heading == 'N':
+            new_y += 1
+        elif self.heading == 'E':
+            new_x += 1
+        elif self.heading == 'S':
+            new_y -= 1
+        elif self.heading == 'W':
+            new_x -= 1
+
+        if 0 <= new_x <= self.plateau.width and 0 <= new_y <= self.plateau.height and not self.plateau.is_position_occupied(
+                new_x, new_y):
+            self.plateau.update_position(self.x, self.y, new_x, new_y)
+            self.x, self.y = new_x, new_y
 
     def current_position(self):
         return f"{self.x} {self.y} {self.heading}"
