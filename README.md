@@ -17,8 +17,8 @@ The Mars Rover project simulates the movement of a rover exploring a rectangular
 ### Setting Up Your Environment  
 1. Clone the repository:  
    ```bash  
-   git clone https://github.com/yourusername/mars-rover.git  
-   cd mars-rover
+   git clone https://github.com/KodyFernandes/MarsRover_ChatGPT.git 
+   cd MarsRover_ChatGPT
    ```
    
 2. (Optional) Set up a virtual environment:
